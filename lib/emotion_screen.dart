@@ -22,7 +22,9 @@ class EmotionScreenState extends State<EmotionScreen> {
       _error = '';
     });
 
-    final url = Uri.parse('http://0.0.0.0:5000/predict'); // Replace <YOUR_IP>
+    final url = Uri.parse(
+      'https://emotion-app-3vlc.onrender.com/predict',
+    ); // Replace <YOUR_IP>
 
     try {
       final response = await http.post(
@@ -65,18 +67,29 @@ class EmotionScreenState extends State<EmotionScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children:
           entries.map((entry) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 2),
-              child: LinearProgressIndicator(
-                value: entry.value.toDouble(),
-                backgroundColor: Colors.grey.shade300,
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  entry.key == _predictedEmotion ? Colors.blue : Colors.grey,
+            final percentage = (entry.value * 100).toStringAsFixed(1);
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '${entry.key} ($percentage%)',
+                  style: TextStyle(
+                    fontWeight:
+                        entry.key == _predictedEmotion
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                  ),
                 ),
-                minHeight: 20,
-                semanticsLabel: entry.key,
-                semanticsValue: '${(entry.value * 100).toStringAsFixed(1)}%',
-              ),
+                LinearProgressIndicator(
+                  value: entry.value.toDouble(),
+                  backgroundColor: Colors.grey.shade300,
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    entry.key == _predictedEmotion ? Colors.blue : Colors.grey,
+                  ),
+                  minHeight: 20,
+                ),
+                SizedBox(height: 6),
+              ],
             );
           }).toList(),
     );
