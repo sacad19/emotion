@@ -99,40 +99,43 @@ class EmotionScreenState extends State<EmotionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("Emotion Detector")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: _controller,
-              maxLines: 3,
-              decoration: InputDecoration(
-                labelText: 'Enter text',
-                border: OutlineInputBorder(),
+      body: SingleChildScrollView(
+        // add scrollable widget
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextField(
+                controller: _controller,
+                maxLines: 3,
+                decoration: InputDecoration(
+                  labelText: 'Enter text',
+                  border: OutlineInputBorder(),
+                ),
               ),
-            ),
-            const SizedBox(height: 12),
-            ElevatedButton(
-              onPressed:
-                  _loading
-                      ? null
-                      : () => _predictEmotion(_controller.text.trim()),
-              child:
-                  _loading
-                      ? CircularProgressIndicator()
-                      : Text("Detect Emotion"),
-            ),
-            const SizedBox(height: 20),
-            if (_error.isNotEmpty)
-              Text(_error, style: TextStyle(color: Colors.red)),
-            if (_predictedEmotion != null)
-              Text(
-                "Predicted Emotion: $_predictedEmotion",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              const SizedBox(height: 12),
+              ElevatedButton(
+                onPressed:
+                    _loading
+                        ? null
+                        : () => _predictEmotion(_controller.text.trim()),
+                child:
+                    _loading
+                        ? CircularProgressIndicator()
+                        : Text("Detect Emotion"),
               ),
-            const SizedBox(height: 10),
-            _buildConfidenceScores(),
-          ],
+              const SizedBox(height: 20),
+              if (_error.isNotEmpty)
+                Text(_error, style: TextStyle(color: Colors.red)),
+              if (_predictedEmotion != null)
+                Text(
+                  "Predicted Emotion: $_predictedEmotion",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+              const SizedBox(height: 10),
+              _buildConfidenceScores(),
+            ],
+          ),
         ),
       ),
     );
