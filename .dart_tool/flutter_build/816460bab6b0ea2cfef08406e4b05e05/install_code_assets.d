@@ -1,0 +1,1 @@
+ /home/sacad/Desktop/emotion/.dart_tool/flutter_build/816460bab6b0ea2cfef08406e4b05e05/native_assets.json: 

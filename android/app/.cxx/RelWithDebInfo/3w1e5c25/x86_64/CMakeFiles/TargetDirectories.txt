@@ -1,0 +1,2 @@
+/home/sacad/Desktop/emotion/android/app/.cxx/RelWithDebInfo/3w1e5c25/x86_64/CMakeFiles/edit_cache.dir
+/home/sacad/Desktop/emotion/android/app/.cxx/RelWithDebInfo/3w1e5c25/x86_64/CMakeFiles/rebuild_cache.dir
