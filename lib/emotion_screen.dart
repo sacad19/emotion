@@ -100,7 +100,6 @@ class EmotionScreenState extends State<EmotionScreen> {
     return Scaffold(
       appBar: AppBar(title: Text("Emotion Detector")),
       body: SingleChildScrollView(
-        // add scrollable widget
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
